@@ -1102,8 +1102,10 @@ class LudicrousDB extends wpdb {
 	public function _real_escape( $string ) { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 
 		// Slash the query part
-		$escaped = addslashes( $string );
-
+		$escaped = '';
+		if(!empty($string)){
+                    $escaped = addslashes( $string );
+                }
 		// Maybe use WordPress core placeholder method
 		if ( method_exists( $this, 'add_placeholder_escape' ) ) {
 			$escaped = $this->add_placeholder_escape( $escaped );
